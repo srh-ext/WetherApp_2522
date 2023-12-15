@@ -12,13 +12,11 @@ public class Terminal {
 
     public static void  readOutput() {
         String output = "Incorrect input.";
+        WeatherManager weatherManager = new WeatherManager();
+
         while (output.equals("Incorrect input.")) {
-            WeatherManager weatherManager = new WeatherManager();
             output = weatherManager.getWeatherByCapitalCity(getInput());
             System.out.println(output);
-
-
-
         }
     }
 }

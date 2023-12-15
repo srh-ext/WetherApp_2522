@@ -12,14 +12,14 @@ public class WeatherManager {
 
 
     public WeatherManager() {
+        if (capitalCitys == null) {
+            FileReader fileReader = new FileReader();
+            fileReader.readCsv();
+            capitalCitys = fileReader.getCapitalCities();
+        }
     }
 
     public String getWeatherByCapitalCity(String city) {
-            if (capitalCitys == null) {
-                FileReader fileReader = new FileReader();
-                fileReader.readCsv();
-                capitalCitys = fileReader.getCapitalCities();
-
                 if (FileFilter.isCapitalCity(capitalCitys, city)) {
                     Wetter wetter = new Wetter();
                     Weather weather = wetter.getWeather(city);
@@ -29,7 +29,6 @@ public class WeatherManager {
                     String formattedString = dateTime.format(formatter);
                     return "Temperature in " + city + ": " + temperatur + "C° at " + formattedString + ".";
                 }
-            }
         return "Incorrect input.";
     }}
 

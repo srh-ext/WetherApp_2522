@@ -10,30 +10,29 @@ import java.util.List;
 
 public class FileReader {
 
-    private final String PATH = "src/main/resources/country-list.csv";
-    private List<String> capitalCities;
+    private static final String PATH = "src/main/resources/country-list.csv";
+    private static List<String> capitalCities;
 
-    public List<String> getCapitalCities() {
+    public static List<String> getCapitalCities() {
         return capitalCities;
     }
 
-    public void readCsv(){
+    public static void readCsv() {
 
         capitalCities = new ArrayList<>();
 
         try {
             BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(PATH), StandardCharsets.UTF_8);
             String line = bufferedReader.readLine();
-            while (line != null){
+            while (line != null) {
                 String[] attributes = line.split(",");
-                String city = attributes[1].replace("\"","");
+                String city = attributes[1].replace("\"", "");
                 capitalCities.add(city);
                 line = bufferedReader.readLine();
             }
-
-    } catch (IOException ioe) {
-        ioe.printStackTrace();
-    }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 }
 
